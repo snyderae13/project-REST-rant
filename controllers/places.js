@@ -1,4 +1,22 @@
 const router = require('express').Router()
+var bodyParser = require('body-parser')
+const { urlencoded } = require('express')
+
+//create application/json parser
+var jsonParser = bodyParser.json()
+
+
+//create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended : false})
+
+
+
+
+
+
+router.get('/new', (req, res) => {
+  res.render('places/new')
+})
 
 router.get('/', (req, res)=> {
     let places = [{
@@ -17,9 +35,14 @@ router.get('/', (req, res)=> {
     res.render('places/index', {places})
 })
 
-router.get('/new', (req, res) => {
-  res.render('places/new')
+
+router.post("/", urlencodedParser, (req, res) => {
+  const obj = JSON.parse(JSON.stringify(req.body))
+  console.log(obj);
+  res.send("POST/places")
 })
+
+
 
 
 module.exports = router

@@ -1,35 +1,11 @@
 h1 {
-    text-align: center;
-    color: cornflowerblue;
-  }
-
-
- 
- nav {
-    background-color: cornflowerblue;
-    padding: 10px;
+  text-align: center;
+  color: cornflowerblue;
 }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
+img {
+    height: 200px;
 }
-
-nav li {
-    display: inline;
-    margin-right: 25px;
-}
-
-nav a {
-    color: white;
-    font-size: 1.5em;
-}
-
-nav a:hover {
-    color: pink;
-    text-decoration: none;
-}
-
 
 body {
   background-color: lightblue;
@@ -42,6 +18,27 @@ main {
   background-color: white;
 }
 
-h2 {
-  color:rgba(13, 202, 202, 0.842);
+nav {
+  background-color: cornflowerblue;
+  padding: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+}
+
+nav li {
+  display: inline;
+  margin-right: 25px;
+}
+
+nav a {
+  color: white;
+  font-size: 1.5em;
+}
+
+nav a:hover {
+  color: pink;
+  text-decoration: none;
 }

@@ -3,6 +3,10 @@ h1 {
   color: cornflowerblue;
 }
 
+h2 {
+  color:rgba(66, 209, 209, 0.966);
+}
+
 img {
     height: 200px;
 }

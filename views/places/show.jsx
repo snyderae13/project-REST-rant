@@ -34,7 +34,7 @@ function Show(data) {
           <div></div>
         </div>
         <div>
-          <h3>Comments</h3>
+          <h2>Comments</h2>
           <p>No comments yet!</p>
         </div>
       </main>

@@ -13,6 +13,12 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
+  if (!req.body.pic) {
+    //default image if one is not provided
+    req.body.pic= 'http://placekitten.com/400/4000'
+  }
+
+
   db.Place.create(req.body)
   .then(() => {
       res.redirect('/places')
@@ -40,18 +46,43 @@ router.get('/:id', (req, res) => {
   })
 })
 
+//EDIT PLACES 
 router.put('/:id', (req, res) => {
-  res.send('PUT /places/:id stub')
+  db.Place.findByIdAndUpdate(req.params.id, req.body)
+  .then(() => {
+      res.redirect(`/places/${req.params.id}`)
+  })
+  .catch(err => {
+      console.log('err', err)
+      res.render('error404')
+  })
 })
 
+
+//DELETE PLACES
 router.delete('/:id', (req, res) => {
-  res.send('DELETE /places/:id stub')
+  db.Place.findByIdAndDelete(req.params.id)
+  .then(place => {
+      res.redirect('/places')
+  })
+  .catch(err => {
+      console.log('err', err)
+      res.render('error404')
+  })
 })
 
+//EDIT
 router.get('/:id/edit', (req, res) => {
-  res.send('GET edit form stub')
+  db.Place.findById(req.params.id)
+  .then(place => {
+      res.render('places/edit', { place })
+  })
+  .catch(err => {
+      res.render('error404')
+  })
 })
 
+//POST
 router.post('/:id/comment', (req, res) => {
   console.log('post comment', req.body)
   if (req.body.author === '') { req.body.author = undefined }
@@ -78,6 +109,7 @@ router.post('/:id/comment', (req, res) => {
       })
 })
 
+//DELETE COMMENT
 router.delete('/:id/rant/:rantId', (req, res) => {
     res.send('GET /places/:id/rant/:rantId stub')
 })

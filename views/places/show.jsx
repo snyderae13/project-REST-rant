@@ -2,7 +2,30 @@ const React = require("react");
 const Default = require("../default");
 
 function Show(data) {
-  let comments = <h3 className="inactive">No comments yet!</h3>;
+  let comments = (
+    <h3 className="inactive">
+      No comments yet!
+    </h3>
+  )
+  let rating = (
+    <h3 className="inactive">
+      Not yet rated
+    </h3>
+  )
+  if (data.place.comments.length) {
+    let sumRatings = data.place.comments.reduce((tot, c) => {
+      return tot + c.stars
+    }, 0)
+    let averageRating = Math.round(sumRatings / data.place.comments.length)
+    let stars = ''
+    for (let i = 0; i < averageRating; i++) {
+      stars += '⭐️'
+    }
+    rating = (
+      <h3>
+        {stars} stars
+      </h3>
+    )
   if (data.place.comments.length) {
     comments = data.place.comments.map((c) => {
       return (
@@ -17,7 +40,7 @@ function Show(data) {
       );
     });
   }
-  console.log(comments);
+  
   return (
     <Default>
       <main>
@@ -35,7 +58,7 @@ function Show(data) {
           <div className="col-sm-6">
             <h1>{data.place.name}</h1>
             <h2>Rating</h2>
-            <p>No Rating Yet</p>
+            {rating}
             <h2>Description</h2>
             <h3>{data.place.showEstablished()}</h3>
             <h4>Serving {data.place.cuisines}</h4>
@@ -110,6 +133,7 @@ function Show(data) {
       </main>
     </Default>
   );
+}
 }
 
 module.exports = Show;
